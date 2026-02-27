@@ -27,7 +27,15 @@ background:rgba(0,0,0,0.4);
 backdrop-filter:blur(12px);
 border-bottom:1px solid rgba(255,255,255,0.05);
 }
+@media(max-width:768px){
 
+.buttons{
+flex-direction:column;
+align-items:center;
+gap:12px;
+}
+
+}
 .logo{
 font-size:22px;
 font-weight:600;
@@ -94,7 +102,15 @@ box-shadow:0 10px 30px rgba(0,0,0,0.4);
 
 /* BUTTONS */
 .buttons{
-margin-bottom:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:12px;
+}
+
+.buttons a{
+width:220px;
+text-align:center;
 }
 
 .btn{
@@ -105,6 +121,10 @@ text-decoration:none;
 color:white;
 margin-right:10px;
 transition:0.3s;
+}
+.btn{
+display:inline-block;
+text-align:center;
 }
 
 .btn:hover{
