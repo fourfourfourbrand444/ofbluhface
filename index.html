@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OG Bluhface | Web Developer</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<header class="navbar">
+<div class="logo">OG Bluhface</div>
+
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
+
+<nav class="nav-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+<div class="hero-text reveal">
+<h1>Hello, I'm</h1>
+<h2><span class="typing"></span></h2>
+<p>
+Professional Web Developer creating modern websites,
+interactive UI and powerful digital experiences.
+</p>
+
+<div class="buttons">
+<a href="#" class="btn">Download CV</a>
+<a href="#projects" class="btn outline">View Projects</a>
+</div>
+
+<div class="social-icons">
+<a href="mailto:babybluhface@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+<a href="https://www.instagram.com/og_bluhface?igsh=anh6N3ZieTN5NTZk"><i class="fab fa-instagram"></i></a>
+<a href="https://wa.me/233530399523"><i class="fab fa-whatsapp"></i></a>
+<a href="https://www.facebook.com/Ogbluface"><i class="fab fa-facebook"></i></a>
+</div>
+
+</div>
+
+<div class="hero-image reveal">
+<img src="#" alt="OG Bluhface">
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="glass reveal">
+<h2>About Me</h2>
+<p>
+I'm OG Bluhface, a creative web developer passionate about
+building responsive, high-performance and visually stunning
+websites. I focus on user experience, smooth animations and
+modern UI design.
+</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2 class="reveal">Skills</h2>
+
+<div class="skill reveal">
+<p>HTML</p>
+<div class="bar"><span data-width="95%"></span></div>
+</div>
+
+<div class="skill reveal">
+<p>CSS</p>
+<div class="bar"><span data-width="92%"></span></div>
+</div>
+
+<div class="skill reveal">
+<p>JavaScript</p>
+<div class="bar"><span data-width="88%"></span></div>
+</div>
+
+<div class="skill reveal">
+<p>UI / UX Design</p>
+<div class="bar"><span data-width="80%"></span></div>
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<h2 class="reveal">Projects</h2>
+
+<div class="projects">
+
+<div class="card reveal">
+<i class="fas fa-code"></i>
+<h3>Developer Portfolio</h3>
+<p>Modern responsive portfolio design.</p>
+</div>
+
+<div class="card reveal">
+<i class="fas fa-music"></i>
+<h3>Music Distribution</h3>
+<p>Platform for artists to distribute music.</p>
+</div>
+
+<div class="card reveal">
+<i class="fas fa-globe"></i>
+<h3>Business Website</h3>
+<p>Professional company website.</p>
+</div>
+
+<div class="card reveal">
+<i class="fas fa-rocket"></i>
+<h3>Startup Landing Page</h3>
+<p>High converting landing page design.</p>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="glass reveal">
+<h2>Contact Me</h2>
+
+<form>
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+
+</section>
+
+<footer>
+<p>© 2026 OG Bluhface — Web Developer</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// typing animation
+const words = [
+"OG Bluhface",
+"A Web Developer",
+"Frontend Developer",
+"UI Designer"
+];
+
+let i = 0;
+let j = 0;
+let currentWord = "";
+let deleting = false;
+
+function typeEffect(){
+currentWord = words[i];
+document.querySelector(".typing").textContent =
+currentWord.substring(0, j);
+
+if(!deleting && j < currentWord.length){
+j++;
+setTimeout(typeEffect, 90);
+}
+else if(deleting && j > 0){
+j--;
+setTimeout(typeEffect, 50);
+}
+else{
+deleting = !deleting;
+if(!deleting){
+i = (i + 1) % words.length;
+}
+setTimeout(typeEffect, 1000);
+}
+}
+
+typeEffect();
+
+
+// scroll reveal animation
+window.addEventListener("scroll", () => {
+document.querySelectorAll(".reveal").forEach(el => {
+const top = el.getBoundingClientRect().top;
+if(top < window.innerHeight - 100){
+el.classList.add("active");
+}
+});
+});
+
+
+// skill animation
+const skills = document.querySelectorAll(".bar span");
+
+window.addEventListener("scroll", () => {
+skills.forEach(skill => {
+const top = skill.getBoundingClientRect().top;
+if(top < window.innerHeight - 50){
+skill.style.width = skill.getAttribute("data-width");
+}
+});
+});
+
+
+// mobile menu
+document.querySelector(".menu-toggle").onclick = () => {
+document.querySelector(".nav-links").classList.toggle("show");
+};
+
+
+// smooth scrolling
+document.querySelectorAll("a[href^='#']").forEach(anchor => {
+anchor.addEventListener("click", function(e){
+e.preventDefault();
+document.querySelector(this.getAttribute("href"))
+.scrollIntoView({ behavior: "smooth" });
+});
+});
+
+
+// floating particles generator
+const particles = document.querySelector(".particles");
+
+for(let i=0;i<40;i++){
+let span = document.createElement("span");
+span.classList.add("particle");
+span.style.left = Math.random()*100 + "%";
+span.style.animationDuration = (Math.random()*10+5)+"s";
+particles.appendChild(span);
+}
+
+</script>
+
+</body>
+</html>
